@@ -20,7 +20,7 @@ public class Methods extends BaseTest {
     public void clictToElement(WebElement element) {
 
         scrollToElement(element);
-        waitByMilliSeconds(500);
+        waitByMilliSeconds(1000);
         element.click();
     }
 
@@ -30,9 +30,10 @@ public class Methods extends BaseTest {
         element.sendKeys(text);
     }
 
-    public void scrollToElement(WebElement element) {
+    public void scrollToElement(WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'})", element);
+        js.executeScript("arguments[0].scrollIntoView({behavior:'smooth',block:'center', inline:'center'})",element);
+
     }
     public void waitByMilliSeconds(long milliseconds) {
         try {
