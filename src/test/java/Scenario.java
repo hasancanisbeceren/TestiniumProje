@@ -1,45 +1,38 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
-public class Scenario extends BaseTest {
+
+public class Scenario extends BaseTest{
     Steps steps = new Steps();
     @Test
     @Order(1)
+    @Disabled("Login sayfasında ki bug yüzünden disable")
     public void girisTest(){
+        steps.clickElement("#main-header > div:nth-child(3) > div > div > div.sc-1yvp483-0.jUYNgf > div.sc-1nx8ums-0.fQSWwJ > div > div:nth-child(1) > div");
+        steps.clickElement("header#main-header > div:nth-of-type(3) > div > div > div > div:nth-of-type(3) > div > div > div:nth-of-type(2) > div > div > div > a");
         steps.sendKeysToElementTest("input[id='L-UserNameField']", "xmyle@outlook.com");
-        steps.sendKeysToElementTest("input[id='L-PasswordField']", "123deneme123");
-        steps.clickElement("input[id='gg-login-enter']");
+        steps.keysEnterToElementTest("input[id='L-PasswordField']", "123deneme123");
+        //steps.clickElement("input#gg-login-enter");
     }
 
     @Test
     @Order(2)
-    public void urunArama(){
-        girisTest();
-        steps.sendKeysToElementTest("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-3.bxSoKG > div.sc-4995aq-4.dNPmGY > input", "iphone telefon");
-        steps.clickElement("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-1.gPcKGA > button");
-    }
-
-    @Test
-    @Order(3)
-    public void urunleriCek(){
-        girisTest();
-        steps.sendKeysToElementTest("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-3.bxSoKG > div.sc-4995aq-4.dNPmGY > input", "iphone telefon");
-        steps.clickElement("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-1.gPcKGA > button");
-        steps.pullElements("p[class='image-container product-hslider-container']");
-
-    }
-    @Test
-    @Order(4)
     public void sepeteEkle(){
-        girisTest();
-        steps.clickElement("#__next > main > div:nth-child(2) > section.tyj39b-0.iqtPYy > section.tyj39b-4.jZoSqD > a");
-        steps.sendKeysToElementTest("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-3.bxSoKG > div.sc-4995aq-4.dNPmGY > input", "iphone telefon");
-        steps.clickElement("body");
-        steps.clickElement("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-1.gPcKGA > button");
-        steps.clickElement("#item-info-block-658047116 > p > img");
-        steps.clickElement("#add-to-basket");
-        steps.clickElement("#wis-lightbox > div > div > div > button.wis-btn-2.wis-btn-72687.control-button.gg-ui-button.plr10.gg-ui-btn-default.wis-height");
-        steps.clickElement("#header_wrapper > div.header-icon-container.robot-header-iconContainer.gg-w-5.gg-d-6.gg-t-14.gg-m-11.gg-w-push-14.gg-d-push-12.gg-t-push-0.gg-m-push-0 > div.basket-container.robot-header-iconContainer-cart > a");
+        //girisTest();
+        //steps.getTextControlTest("#main-header > div:nth-child(4) > div > div > div > div.sc-1nx8ums-0.fePtkv > div > div:nth-child(2) > div > div.gekhq4-4.fWiwPC > span", "hasancanstoprak628616");
+        steps.ifElementExistClick("a[class='tyj39b-5 lfsBU']");
+        steps.keysEnterToElementTest("#main-header > div:nth-child(3) > div > div > div > div.sc-1nx8ums-0.fXQfgp > form > div > div.sc-1yew439-3.bxSoKG > div.sc-4995aq-4.dNPmGY > input", "bilgisayar");
+        steps.clickElement("#__next > main > div.vfy45n-0.bWfBMK > div > div > div.sc-1nx8ums-0.fbkkZW > div > div.sc-533kbx-0.sc-1v2q8t1-0.iCRwxx.gyNBA > div.f9zh0g-0.jmjCAm > nav > ul > li:nth-child(3) > a");
+        steps.getTextControlTest("#__next > main > div.vfy45n-0.bWfBMK > div > div > div.sc-1nx8ums-0.fbkkZW > div > div.sc-533kbx-0.sc-1v2q8t1-0.iCRwxx.gyNBA > div.f9zh0g-0.jmjCAm > nav > ul > li:nth-child(3) > a > span","2");
+        steps.randomClick("#__next > main > div.vfy45n-0.bWfBMK > div > div > div.sc-1nx8ums-0.fbkkZW > div > div.sc-533kbx-0.sc-1v2q8t1-0.iCRwxx.gyNBA > div.sc-1favwb2-0.bTbNwr > ul > li");
+        steps.saveText("#sp-price-highPrice");
+        steps.clickByXpath("//*[@id=\"add-to-basket\"]");
+        steps.clickElement("div[class='gg-d-10 pl0']");
+        steps.waitByMilliSeconds(1000);
+        steps.changeControl();
+        steps.waitByMilliSeconds(6000);
+        steps.getTextControlTest("div[class='gg-d-19 gg-w-21 gg-t-19 gg-m-18'] h2", "Sepetinizde ürün bulunmamaktadır."); // sepet boş mu kontrol et
+
     }
 }

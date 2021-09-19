@@ -1,8 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
-import org.openqa.selenium.Platform;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,13 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ExtendWith(TestResultLogger.class)
 public class BaseTest {
     protected static WebDriver driver;
     protected static WebDriverWait webDriverWait;
-    protected String baseURL = "https://www.gittigidiyor.com/uye-girisi";
+    protected String baseURL = "https://www.gittigidiyor.com";
     DesiredCapabilities capabilities = new DesiredCapabilities();
     ChromeOptions options = new ChromeOptions();
-    public static String Path = "drivers/chromedriver";
 
     @BeforeAll
     public void setUp(){
